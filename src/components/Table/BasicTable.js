@@ -1,12 +1,16 @@
 import React,{useState,useEffect} from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button'
+import {Row,Col } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 
 const BasicTable = () => {
 	const [items, setItems] = useState([]);
 
 	const [pageCount, setpageCount] = useState(0);
+
+	const [query, setQuery] = useState("");
+	console.log(items.filter(item => item.name.toLowerCase().includes('lg')));
 
 	let limit = 20;
 
@@ -61,6 +65,36 @@ const BasicTable = () => {
 	};
   return (
 		<>
+			<Row className="mt-3 mx-3 d-flex align-items-center">
+				<Col md={5}>
+					<div className="p-1 bg-white  shadow-sm mt-3">
+						<div className="input-group">
+							<input
+								type="search"
+								placeholder="Search..."
+								aria-describedby="button-addon1"
+								className="form-control border-0 bg-light"
+								onChange={e => setQuery(e.target.value)}
+							/>
+
+							<div className="input-group-append">
+								<button
+									id="button-addon1"
+									type="submit"
+									className="btn btn-link text-dark"
+								>
+									<i className="fa fa-search"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</Col>
+				<Col className="text-end mt-3">
+					<Button>Add Customer</Button>
+				</Col>
+			</Row>
+			
+
 			<Table hover size="sm" className="mt-5 px-1">
 				<thead>
 					<tr>
@@ -73,25 +107,27 @@ const BasicTable = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{items.map(item => {
-						return (
-							<tr key={item.id} className="p-3">
-								<td>{item.id}</td>
-								<td>{item.name}</td>
-								<td>{item.username}</td>
-								<td>{item.email}</td>
-								<td>{item.phone}</td>
-								<td>
-									<Button
-										variant="outline-danger outline-none"
-										onClick={() => handleDeleteClick(item.id)}
-									>
-										Delete
-									</Button>
-								</td>
-							</tr>
-						);
-					})}
+					{items
+						.filter(item => item.name.toLowerCase().includes(query))
+						.map(item => {
+							return (
+								<tr key={item.id} className="p-3">
+									<td>{item.id}</td>
+									<td>{item.name}</td>
+									<td>{item.username}</td>
+									<td>{item.email}</td>
+									<td>{item.phone}</td>
+									<td>
+										<Button
+											variant="outline-danger outline-none"
+											onClick={() => handleDeleteClick(item.id)}
+										>
+											Delete
+										</Button>
+									</td>
+								</tr>
+							);
+						})}
 				</tbody>
 			</Table>
 			<ReactPaginate

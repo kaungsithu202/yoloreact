@@ -6,12 +6,12 @@ import SearchInput from '../components/SearchInput';
 const Customers = () => {
   return (
 		<>
-			<Row className="mt-3 mx-3 ">
-				<Col md={5}><SearchInput/></Col>
+			{/* <Row className="mt-3 mx-3 ">
+				<Col md={5}><SearchInput onChanged={ e => setQuery(e.target.value)}/></Col>
 				<Col className="text-end">button</Col>
-			</Row>
+			</Row> */}
 			<Row>
-				<Col>
+		<Col>
          <BasicTable/>
         </Col>
 			</Row>
