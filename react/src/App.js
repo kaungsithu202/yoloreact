@@ -2,10 +2,13 @@ import React from 'react'
 import "./scss/style.scss";
 import {Routes,Route} from 'react-router-dom';
 import { Row,Col} from "react-bootstrap";
+import Customers from './pages/Customers';
+import Home from './components/Frontend/Home';
 import Sidebar from './components/Sidebar/Sidebar';
 import Dashboard from './pages/Dashboard';
 import NavbarCo from './components/NavbarCo';
-import Customers from './pages/Customers';
+import Register from './components/Frontend/Auth/Register';
+import Login from './components/Frontend/Auth/Login';
 
 function App() {
   return (
@@ -19,7 +22,10 @@ function App() {
 						<Routes>
 							<Route path="/">
 							<Route index element={ <Dashboard/>} />
+							<Route index path="/home" element={ <Home/>} />
 							<Route path="customers" element={ <Customers/>}/>
+							<Route path="/login" element={<Login />} />
+							<Route path="/register" element={<Register />} />
 							</Route>
 						</Routes>
 					
