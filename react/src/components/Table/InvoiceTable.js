@@ -1,21 +1,20 @@
-import React,{useState,useEffect} from 'react';
-import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button'
-import {Row,Col } from 'react-bootstrap';
-import ReactPaginate from 'react-paginate';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
+import { Row, Col } from "react-bootstrap";
+import ReactPaginate from "react-paginate";
+import { useNavigate } from "react-router-dom";
 
-const BasicTable = (props) => {
+const BasicTable = props => {
 	const [items, setItems] = useState([]);
 
 	const [pageCount, setpageCount] = useState(0);
 
 	const [query, setQuery] = useState("");
-	console.log(items.filter(item => item.name.toLowerCase().includes('lg')));
+	console.log(items.filter(item => item.name.toLowerCase().includes("lg")));
 
 	let limit = 20;
 	const navigate = useNavigate();
-	
 
 	useEffect(() => {
 		const getComments = async () => {
@@ -24,7 +23,7 @@ const BasicTable = (props) => {
 				// `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`
 			);
 			const data = await res.json();
-			console.log(data)
+			console.log(data);
 			const total = res.headers.get("x-total-count");
 			setpageCount(Math.ceil(total / limit));
 			// console.log(Math.ceil(total/12));
@@ -34,16 +33,15 @@ const BasicTable = (props) => {
 		getComments();
 	}, [limit]);
 
-	  const handleDeleteClick = itemId => {
-			const newItems = [...items];
+	const handleDeleteClick = itemId => {
+		const newItems = [...items];
 
-			const index = items.findIndex(item =>item.id === itemId);
+		const index = items.findIndex(item => item.id === itemId);
 
-			newItems.splice(index, 1);
+		newItems.splice(index, 1);
 
-			setItems(newItems);
-		};
-
+		setItems(newItems);
+	};
 
 	const fetchComments = async currentPage => {
 		const res = await fetch(
@@ -53,7 +51,6 @@ const BasicTable = (props) => {
 		const data = await res.json();
 		return data;
 	};
-
 
 	const handlePageClick = async data => {
 		console.log(data.selected);
@@ -66,7 +63,7 @@ const BasicTable = (props) => {
 		// scroll to the top
 		//window.scrollTo(0, 0)
 	};
-  return (
+	return (
 		<>
 			<Row className="mt-3 mx-3 d-flex align-items-center">
 				<Col md={5}>
@@ -93,15 +90,15 @@ const BasicTable = (props) => {
 					</div>
 				</Col>
 				<Col className="text-end mt-3">
-					<Button onClick={()=>navigate('/create-customer')}>Add Customer</Button>
+					<Button onClick={() => navigate("/create-customer")}>
+						Add Customer
+					</Button>
 				</Col>
 			</Row>
-			
 
 			<Table hover size="sm" className="mt-5 px-1">
 				<thead>
 					<tr>
-					
 						<th>ID</th>
 						<th>Name</th>
 						<th>User Name</th>
@@ -155,6 +152,6 @@ const BasicTable = (props) => {
 			/>
 		</>
 	);
-}
+};
 
-export default BasicTable
+export default BasicTable;

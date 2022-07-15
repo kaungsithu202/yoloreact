@@ -18,6 +18,14 @@ import SidebarItem from './SidebarItem';
 
 
 const Sidebar = (props) => {
+	  const navLinkStyles = ({ isActive }) => {
+			return {
+				color:isActive? '#FF0000' : '#000',
+				textDecoration:'none'
+			
+				
+			};
+		};
 	
   return (
 		<>
@@ -26,41 +34,41 @@ const Sidebar = (props) => {
 					<div className="py-3 text-center text-primary mb-5">
 						<img src={logo} alt="YOLO" />
 					</div>
-				
-						
-					<SidebarItem
-						name="Dashboard"
-						icon={<MdDashboard className="fs-3" />}
-					/>
-				
-					
+
+					<NavLink to="/dashboard" style={navLinkStyles}>
+						<SidebarItem
+							name="Dashboard"
+							icon={<MdDashboard className="fs-3" />}
+						/>
+					</NavLink>
+					<NavLink to="/customers" style={navLinkStyles}>
 						<SidebarItem
 							name="Customers"
 							icon={<MdPeopleAlt className="fs-3" />}
 						/>
-					
-			
-						<DropDown />
+					</NavLink>
+
+					<DropDown />
+				
 					{/* <SidebarItem
 						name="Invoices"
 						icon={<MdOutlineRequestQuote className="fs-3" />}
 					/> */}
-				
-						<SidebarItem
-							name="Delivery"
-							icon={<MdOutlineDeliveryDining className="fs-3" />}
-						/>
-					
-						<SidebarItem
-							name="Re/Trans"
-							icon={<MdOutlineWrapText className="fs-3" />}
-						/>
-			
-						<SidebarItem
-							name="Products"
-							icon={<MdOutlineSell className="fs-3" />}
-						/>
-					
+
+					<SidebarItem
+						name="Delivery"
+						icon={<MdOutlineDeliveryDining className="fs-3" />}
+					/>
+
+					<SidebarItem
+						name="Re/Trans"
+						icon={<MdOutlineWrapText className="fs-3" />}
+					/>
+
+					<SidebarItem
+						name="Products"
+						icon={<MdOutlineSell className="fs-3" />}
+					/>
 				</nav>
 			</Col>
 		</>
