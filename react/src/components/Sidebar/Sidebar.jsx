@@ -20,10 +20,8 @@ import SidebarItem from './SidebarItem';
 const Sidebar = (props) => {
 	  const navLinkStyles = ({ isActive }) => {
 			return {
-				color:isActive? '#FF0000' : '#000',
-				textDecoration:'none'
-			
-				
+				color: isActive ? "#24A0ED" : "#000",
+				textDecoration: "none",
 			};
 		};
 	
@@ -53,13 +51,13 @@ const Sidebar = (props) => {
 					{/* <SidebarItem
 						name="Invoices"
 						icon={<MdOutlineRequestQuote className="fs-3" />}
-					/> */}
-
-					<SidebarItem
+					/> */} 
+				<NavLink to="/delivery" style={navLinkStyles}>
+					<SidebarItem 
 						name="Delivery"
 						icon={<MdOutlineDeliveryDining className="fs-3" />}
 					/>
-
+				</NavLink>
 					<SidebarItem
 						name="Re/Trans"
 						icon={<MdOutlineWrapText className="fs-3" />}

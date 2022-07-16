@@ -121,6 +121,29 @@ const BasicTable = props => {
 									<td>{item.phone}</td>
 									<td>
 										<Button
+											variant="outline-success outline-none"
+											
+										>
+											Paid
+										</Button>
+									</td>
+									<td>
+										<Button
+											variant="outline-warning outline-none"	
+										>
+											Unpaid
+										</Button>
+									</td>
+									<td>
+										<Button
+											variant="outline-primary outline-none"
+											
+										>
+											Deliever
+										</Button>
+									</td>
+									<td>
+										<Button
 											variant="outline-danger outline-none"
 											onClick={() => handleDeleteClick(item.id)}
 										>

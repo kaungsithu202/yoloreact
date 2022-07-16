@@ -5,7 +5,6 @@ import BsTabs from './BsTabs';
 const Invoices = () => {
   return (
     <div>
-      
      <InvoiceTable/>
     </div>
   )
