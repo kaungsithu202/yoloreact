@@ -15,7 +15,7 @@ const Wrap = (props) => {
                         {props.children}
                         </Col>
                         </Row>
-                        </div>
+    </div>
   )
 }
 
