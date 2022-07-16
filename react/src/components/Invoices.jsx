@@ -1,10 +1,12 @@
 import React from 'react'
-import BasicTable from './Table/BasicTable';
+import InvoiceTable from './Table/InvoiceTable';
+import BsTabs from './BsTabs';
 
 const Invoices = () => {
   return (
     <div>
-        <BasicTable/>
+      
+     <InvoiceTable/>
     </div>
   )
 }

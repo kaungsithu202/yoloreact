@@ -12,10 +12,9 @@ axios.defaults.headers.post['Accept'] = 'application/json';
 
 axios.defaults.withCredentials = true;
 function App() {
-	const a= true;
+	
   return (
 		<>
-			
 			<CustomRoute/>
 		</>
 	);

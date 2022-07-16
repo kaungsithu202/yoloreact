@@ -1,7 +1,6 @@
 import React from "react";
 import "./scss/style.scss";
 import { Routes, Route } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
 import Customers from "./pages/Customers";
 
 
@@ -20,6 +19,7 @@ const CustomRoute = () => {
 		<>
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path="home" element={<Home />} />
 				<Route path="login" element={<Login />} />
 				<Route path="register" element={<Register />} />
 				<Route

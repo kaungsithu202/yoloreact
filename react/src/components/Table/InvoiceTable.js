@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
+import BsTabs from "../BsTabs";
 
 const BasicTable = props => {
 	const [items, setItems] = useState([]);
@@ -95,7 +96,7 @@ const BasicTable = props => {
 					</Button>
 				</Col>
 			</Row>
-
+			<BsTabs />
 			<Table hover size="sm" className="mt-5 px-1">
 				<thead>
 					<tr>
