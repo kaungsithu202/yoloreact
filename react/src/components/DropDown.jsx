@@ -5,9 +5,11 @@ import  './DropDown.module.css';
 import {NavLink} from 'react-router-dom';
 
 const DropDown = (props) => {
+	const activeLink ='text-primary';
+	const normalLink='text-dark'
 	
   return (
-		<NavLink to='/invoices'>
+		<NavLink to='/invoices' className={({isActive})=> (isActive ? activeLink : normalLink)}>
 			<DropdownButton
 				variant="white outline-none shadow-none"
 				className="ms-3 mb-5  dropdown "
