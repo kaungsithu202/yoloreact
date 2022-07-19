@@ -1,6 +1,6 @@
 import React from "react";
 import "./scss/style.scss";
-import { Routes, Route } from "react-router-dom";
+import {Navigate, Routes, Route } from "react-router-dom";
 import Customers from "./pages/Customers";
 import InvoicesTable from './components/Table/InvoiceTable'
 
@@ -22,6 +22,7 @@ const CustomRoute = () => {
 				<Route path="home" element={<Home />} />
 				<Route path="login" element={<Login />} />
 				<Route path="register" element={<Register />} />
+
 				<Route
 					path="dashboard"
 					element={
