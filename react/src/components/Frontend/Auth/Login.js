@@ -35,7 +35,7 @@ function Login(){
                 localStorage.setItem('auth_name', res.data.name);
                 swal("Success", res.data.message, "success");
 
-                history('../dashboard');
+                history('../admin/dashboard');
             }
             else if(res.data.status === 401)
             {
@@ -45,8 +45,6 @@ function Login(){
             {
                 setLogin({...loginInput, error_list: res.data.validation_errors});
             }
-
-            console.log(res.data);
         });
     });
 
