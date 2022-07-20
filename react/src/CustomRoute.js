@@ -13,13 +13,10 @@ import CreateCustomer from "./components/Forms/CreateCustomer";
 import NoPageFound from "./components/NoPageFound";
 import Invoices from "./components/Invoices";
 import Wrap from "./components/Wrap";
-<<<<<<< HEAD
 import CreateInvoice from "./components/Forms/CreateInvoice";
-=======
 import { MdLocalHospital } from "react-icons/md";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
->>>>>>> 37edc897e444857b14a71e0140c19989c1c990fd
 
 const token = localStorage.getItem('auth_token');
 const CustomRoute = () => {
@@ -32,7 +29,6 @@ const CustomRoute = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="home" element={<Home />} />
 
-<<<<<<< HEAD
 				<Route
 					path="create-customer"
 					element={
@@ -62,7 +58,6 @@ const CustomRoute = () => {
 					<Route path="unpaid" element={<InvoicesTable />}></Route>
 					<Route path="delete" element={<Delete />}></Route>
 					<Route path="remain" element={<InvoicesTable />}></Route>
-=======
 				<Route path="/" element={<PublicRoutes />}>
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
@@ -116,7 +111,6 @@ const CustomRoute = () => {
 						<Route path="remain" element={<InvoicesTable/>}></Route>
 					</Route>
 
->>>>>>> 37edc897e444857b14a71e0140c19989c1c990fd
 				</Route>
 
 				<Route
