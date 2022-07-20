@@ -39,7 +39,7 @@ function Register(){
                     localStorage.setItem('auth_name', res.data.name);
                     swal('Success', res.data.message, "success");
 
-                    history('/register');
+                    history('/login');
 
                     setRegister({
                         name:'',
