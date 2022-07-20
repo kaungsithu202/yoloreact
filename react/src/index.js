@@ -8,13 +8,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-    
-      <App />
-    </BrowserRouter>
-  
-
-  </React.StrictMode>,
-  document.getElementById('root'),
+	<React.StrictMode>
+		<BrowserRouter>
+			
+				<App />
+			
+		</BrowserRouter>
+	</React.StrictMode>,
+	document.getElementById("root"),
 );

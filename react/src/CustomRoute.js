@@ -3,16 +3,17 @@ import "./scss/style.scss";
 import { Routes, Route } from "react-router-dom";
 import Customers from "./pages/Customers";
 import InvoicesTable from './components/Table/InvoiceTable'
-
+import Delete from "./components/Table/Delete";
 import Dashboard from "./pages/Dashboard";
 import Home from "./components/Frontend/Home";
 import Login from "./components/Frontend/Auth/Login";
 import Register from "./components/Frontend/Auth/Register";
 
-import CreateCustomer from "./components/CreateCustomer";
+import CreateCustomer from "./components/Forms/CreateCustomer";
 import NoPageFound from "./components/NoPageFound";
 import Invoices from "./components/Invoices";
 import Wrap from "./components/Wrap";
+import CreateInvoice from "./components/Forms/CreateInvoice";
 
 const CustomRoute = () => {
 	return (
@@ -47,6 +48,14 @@ const CustomRoute = () => {
 						</Wrap>
 					}
 				/>
+
+				<Route path="create-invoice" 
+				element={
+					<Wrap>
+						<CreateInvoice />
+					</Wrap>
+			}
+				></Route>
 				<Route
 					path="invoices"
 					element={
@@ -55,19 +64,21 @@ const CustomRoute = () => {
 						</Wrap>
 					}
 				>
-					<Route path="all" element={<InvoicesTable/>}></Route>
-					<Route path="paid" element={<InvoicesTable/>}></Route>
-					<Route path="unpaid" element={<InvoicesTable/>}></Route>
-					<Route path="delete" element={<InvoicesTable/>}></Route>
-					<Route path="remain" element={<InvoicesTable/>}></Route>
+					<Route path="all" element={<InvoicesTable />}></Route>
+					<Route path="paid" element={<InvoicesTable />}></Route>
+					<Route path="unpaid" element={<InvoicesTable />}></Route>
+					<Route path="delete" element={<Delete />}></Route>
+					<Route path="remain" element={<InvoicesTable />}></Route>
 				</Route>
 
-				<Route path="/delivery" element={
-					<Wrap>
-						<Invoices />
-
-					</Wrap>
-				} />
+				<Route
+					path="/delivery"
+					element={
+						<Wrap>
+							<Invoices />
+						</Wrap>
+					}
+				/>
 				<Route path="*" element={<NoPageFound />} />
 			</Routes>
 		</>

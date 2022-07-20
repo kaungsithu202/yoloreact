@@ -4,9 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Row, Col } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
-import BsTabs from "../BsTabs";
-
-const BasicTable = props => {
+const Delete = () => {
 	const [items, setItems] = useState([]);
 
 	const [pageCount, setpageCount] = useState(0);
@@ -34,16 +32,6 @@ const BasicTable = props => {
 		getComments();
 	}, [limit]);
 
-	const handleDeleteClick = itemId => {
-		const newItems = [...items];
-
-		const index = items.findIndex(item => item.id === itemId);
-
-		newItems.splice(index, 1);
-
-		setItems(newItems);
-	};
-
 	const fetchComments = async currentPage => {
 		const res = await fetch(
 			`http://jsonplaceholder.typicode.com/users?_page=${currentPage}&_limit=${limit}`,
@@ -66,9 +54,7 @@ const BasicTable = props => {
 	};
 	return (
 		<>
-		<h1>InvoiceTa</h1>
 			<Row className="mt-3 mx-3 d-flex align-items-center">
-				
 				<Col md={5}>
 					<div className="p-1 bg-white  shadow-sm mt-3">
 						<div className="input-group">
@@ -93,12 +79,12 @@ const BasicTable = props => {
 					</div>
 				</Col>
 				<Col className="text-end mt-3">
-					<Button onClick={() => navigate("/create-invoice")}>
-						Add Invoice
+					<Button onClick={() => navigate("/create-customer")}>
+						Add Customer
 					</Button>
 				</Col>
 			</Row>
-			<BsTabs />
+
 			<Table hover size="sm" className="mt-5 px-1">
 				<thead>
 					<tr>
@@ -122,34 +108,8 @@ const BasicTable = props => {
 									<td>{item.email}</td>
 									<td>{item.phone}</td>
 									<td>
-										<Button
-											variant="outline-success outline-none"
-											
-										>
-											Paid
-										</Button>
-									</td>
-									<td>
-										<Button
-											variant="outline-warning outline-none"	
-										>
-											Unpaid
-										</Button>
-									</td>
-									<td>
-										<Button
-											variant="outline-primary outline-none"
-											
-										>
-											Deliever
-										</Button>
-									</td>
-									<td>
-										<Button
-											variant="outline-danger outline-none"
-											onClick={() => handleDeleteClick(item.id)}
-										>
-											Delete
+										<Button variant="outline-success outline-none">
+											Restore
 										</Button>
 									</td>
 								</tr>
@@ -180,4 +140,4 @@ const BasicTable = props => {
 	);
 };
 
-export default BasicTable;
+export default Delete;

@@ -68,6 +68,7 @@ const BasicTable = (props) => {
 	};
   return (
 		<>
+		<h1>BTable</h1>
 			<Row className="mt-3 mx-3 d-flex align-items-center">
 				<Col md={5}>
 					<div className="p-1 bg-white  shadow-sm mt-3">
@@ -99,6 +100,7 @@ const BasicTable = (props) => {
 			
 
 			<Table hover size="sm" className="mt-5 px-1">
+				
 				<thead>
 					<tr>
 					
