@@ -8,12 +8,12 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./components/Frontend/Home";
 import Login from "./components/Frontend/Auth/Login";
 import Register from "./components/Frontend/Auth/Register";
-
+import CreateInvoice from "./components/Forms/CreateInvoice";
 import CreateCustomer from "./components/Forms/CreateCustomer";
 import NoPageFound from "./components/NoPageFound";
 import Invoices from "./components/Invoices";
 import Wrap from "./components/Wrap";
-import CreateInvoice from "./components/Forms/CreateInvoice";
+import CreateCargoInvoice from './components/Forms/CreateCargoInvoice'
 import { MdLocalHospital } from "react-icons/md";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
@@ -37,6 +37,14 @@ const CustomRoute = () => {
 						</Wrap>
 					}
 				/>
+
+				<Route path="create-cargo-invoice" 
+				element={
+					<Wrap>
+						<CreateCargoInvoice />
+					</Wrap>
+			}
+				></Route>
 
 				<Route path="create-invoice" 
 				element={

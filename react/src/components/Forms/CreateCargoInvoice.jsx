@@ -1,18 +1,13 @@
-import React from 'react'
-import {
-	Row,
-	Col,
-	Container,
-	Dropdown,
-	DropdownButton,
-	Button,
-} from "react-bootstrap";
+import React from 'react';
+import {Row,Col,Container,Dropdown,DropdownButton,Button} from 'react-bootstrap';
 
-const CreateInvoice = (props) => {
+
+const CreateInvoice = () => {
+   
   return (
 		<>
-			<Container>
-				<h3 className="text-center my-5 pt-4">{props.title}</h3>
+			<Container >
+				<h3 className="text-center my-5 pt-4">Main Invoices</h3>
 				<Row className="mt-4 ms-5">
 					<Col md={6}>
 						<input
@@ -108,7 +103,7 @@ const CreateInvoice = (props) => {
 				</Row>
 				<Row className="d-flex align-items-center justify-content-center mt-1 gx-5 m-auto">
 					<Col
-						md={5}
+						md={6}
 						className="d-flex align-items-center justify-content-around "
 					>
 						<DropdownButton
@@ -133,29 +128,25 @@ const CreateInvoice = (props) => {
 					</Col>
 
 					<Col md={6} className=" d-flex align-items-center   ">
-						<div className=" d-flex align-items-center justify-content-end mt-2  ms-4 ">
-							<label className=" text-nowrap me-5 " htmlFor="discount">
-								Discount
-							</label>
-
-							<input
-								type="number"
-								name="discount"
-								className="form-control w-50"
-								placeholder="10,000 "
-							/>
-						</div>
-					</Col>
-				</Row>
-				<Row className="mt-4    ">
-					<Col
-						md={9}
-						className="ms-3 d-flex align-items-center justify-content-end  "
-					>
 						<h5 className="fs-5 fw-normal">Sub Total</h5>
 						<h5 className="ms-5 me-3 fs-5 fw-normal">15,000</h5>
 					</Col>
 				</Row>
+
+				<Col md={10} className="ms-3">
+					<div className=" d-flex align-items-center justify-content-end mt-2 ">
+						<label className=" text-nowrap me-5 " htmlFor="discount">
+							Discount
+						</label>
+
+						<input
+							type="number"
+							name="discount"
+							className="form-control w-25 "
+							placeholder="10,000 "
+						/>
+					</div>
+				</Col>
 				<Col md={11}>
 					<div className="d-flex justify-content-end">
 						<hr className="w-50 border border-dark" />
@@ -163,25 +154,28 @@ const CreateInvoice = (props) => {
 				</Col>
 
 				<Col md={9}>
-					<div className=" d-flex align-items-center justify-content-end mt-2 ">
+					<div className=" d-flex align-items-center justify-content-end mt-2 me-2">
 						<h5 className="fs-5 fw-normal"> Total</h5>
 						<h5 className="ms-5 me-3 fs-5 fw-normal">15,000</h5>
 					</div>
 				</Col>
+				<Col md={10} className="ms-3">
+					<div className=" d-flex align-items-center justify-content-end mt-3 ">
+						<label className=" text-nowrap me-5 " htmlFor="Cartoon">
+							Cartoon
+						</label>
 
-				<Row className="d-flex align-items-center justify-content-end mt-5	pb-5">
-					<Col md={3}>
-						<Button variant="primary" className="px-5 	">
-							Print
-						</Button>
-					</Col>
-					<Col
-						md={3}
-						
-					>
-						<Button variant="outline-primary" className="px-5 	">
-							Save
-						</Button>
+						<input
+							type="number"
+							name="discount"
+							className="form-control w-25 "
+							placeholder="10,000 "
+						/>
+					</div>
+				</Col>
+				<Row>
+					<Col md={10} className='d-flex align-items-center justify-content-end mt-4	pb-5'>
+						<Button variant='outline-primary' className='px-5 	' 	>Save</Button>
 					</Col>
 				</Row>
 			</Container>
@@ -189,4 +183,4 @@ const CreateInvoice = (props) => {
 	);
 }
 
-export default CreateInvoice
+export default CreateInvoice;

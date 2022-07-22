@@ -11,3 +11,6 @@ input:focus {
     outline: none !important;
     box-shadow: none !important;
 }
+.vh-150{
+    max-height:150vh;       
+}

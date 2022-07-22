@@ -5,9 +5,11 @@ import './App.css'
 import Wrap from './components/Wrap';
 import axios from 'axios';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import CreateInvoice from './components/Forms/CreateInvoice';
+import CreateCargoInvoice from './components/Forms/CreateCargoInvoice';
+import CreateInvoice from './components/Forms/CreateInvoice';	
+import UserDetail from './components/UserDetails/UserDetail';
 
-
+import CreateDraftInvoice from './components/Forms/CreateDraftInvoice';
 
 
 
@@ -27,8 +29,11 @@ axios.interceptors.request.use(function (config){
 
   return (
 		<>
+			 {/* <Wrap>
+				<CreateInvoice  title='Main Invoices'/>
+			</Wrap>  */}	
 			{/* <Wrap>
-				<CreateInvoice />
+				<UserDetail  />
 			</Wrap> */}
 
 			<CustomRoute/>

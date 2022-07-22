@@ -4,7 +4,7 @@ import {Card} from 'react-bootstrap';
 
 const CardCo = (props) => {
   return (
-		<Card style={{ width: "13rem" }} className="p-3 mt-3 ">
+		<Card style={props.styled} className="p-3 mt-3 ">
 			<Card.Body>
 				<Card.Title className=" d-flex align-items-center justify-content-center">
 					{props.cardIcon}
