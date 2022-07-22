@@ -45,6 +45,7 @@ const CustomRoute = () => {
 					</Wrap>
 			}
 				></Route>
+
 				<Route
 					path="invoices"
 					element={
@@ -58,6 +59,8 @@ const CustomRoute = () => {
 					<Route path="unpaid" element={<InvoicesTable />}></Route>
 					<Route path="delete" element={<Delete />}></Route>
 					<Route path="remain" element={<InvoicesTable />}></Route>
+					</Route>
+
 				<Route path="/" element={<PublicRoutes />}>
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />

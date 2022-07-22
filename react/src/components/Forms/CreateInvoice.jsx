@@ -7,8 +7,8 @@ const CreateInvoice = () => {
   return (
 		<>
 			<Container>
-				<h3 className="text-center mt-3 pt-4">Main Invoices</h3>
-				<Row className="mt-4 ms-5">
+				<h3 className="text-center my-4 pt-4">Main Invoices</h3>
+				<Row className="mt-5 ms-5">
 					<Col md={6}>
 						<input
 							type="text"
@@ -102,7 +102,10 @@ const CreateInvoice = () => {
 					</Col>
 				</Row>
 				<Row className="d-flex align-items-center justify-content-center mt-5 gx-5 m-auto">
-					<Col md="auto">
+					<Col
+						md={6}
+						className="d-flex align-items-center justify-content-around "
+					>
 						<DropdownButton
 							id="dropdown-basic-button"
 							title=" Paid/Unpaid"
@@ -112,8 +115,7 @@ const CreateInvoice = () => {
 							<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
 							<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
 						</DropdownButton>
-					</Col>
-					<Col md="auto">
+
 						<DropdownButton
 							id="dropdown-basic-button"
 							title="Delivery/Not"
@@ -125,19 +127,32 @@ const CreateInvoice = () => {
 						</DropdownButton>
 					</Col>
 
-					<Col md="auto" className=" d-flex align-items-center ">
-						<label className=" text-nowrap w-50" htmlFor="discount">
+					<Col md={6} className=" d-flex align-items-center ">
+						<label className=" text-nowrap w-25" htmlFor="discount">
 							Discount
 						</label>
 
 						<input
 							type="number"
 							name="discount"
-							className="form-control "
+							className="form-control w-50 "
 							placeholder="10,000 "
 						/>
 					</Col>
 				</Row>
+				<Col md={9}>
+					<div className=" d-flex align-items-center justify-content-end mt-4 me-2 ">
+						<h5 className="fs-5 fw-normal">Sub Total</h5>
+						<h5 className="ms-5 me-3 fs-5 fw-normal">15,000</h5>
+					</div>
+				</Col>
+				<Col md={9}>
+					<div className=" d-flex align-items-center justify-content-end mt-2 me-2">
+						<h5 className="fs-5 fw-normal"> Total</h5>
+						<h5 className="ms-5 me-3 fs-5 fw-normal">15,000</h5>
+					
+					</div>
+				</Col>
 			</Container>
 		</>
 	);
