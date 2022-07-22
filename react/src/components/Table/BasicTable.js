@@ -4,8 +4,11 @@ import Button from 'react-bootstrap/Button'
 import {Row,Col } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const BasicTable = (props) => {
+
+	const [loading, setLoading] = useState(true);
 	const [items, setItems] = useState([]);
 
 	const [pageCount, setpageCount] = useState(0);
@@ -17,22 +20,41 @@ const BasicTable = (props) => {
 	const navigate = useNavigate();
 	
 
-	useEffect(() => {
-		const getComments = async () => {
-			const res = await fetch(
-				`http://jsonplaceholder.typicode.com/users?_page=1&_limit=${limit}`,
-				// `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`
-			);
-			const data = await res.json();
-			console.log(data)
-			const total = res.headers.get("x-total-count");
-			setpageCount(Math.ceil(total / limit));
-			// console.log(Math.ceil(total/12));
-			setItems(data);
-		};
+	// useEffect(() => {
+	// 	const getComments = async () => {
+	// 		const res = await fetch(
+	// 			`http://jsonplaceholder.typicode.com/users?_page=1&_limit=${limit}`,
+	// 			// `https://jsonplaceholder.typicode.com/comments?_page=1&_limit=${limit}`
+	// 		);
+	// 		const data = await res.json();
+	// 		console.log(data)
+	// 		const total = res.headers.get("x-total-count");
+	// 		setpageCount(Math.ceil(total / limit));
+	// 		// console.log(Math.ceil(total/12));
+	// 		setItems(data);
+	// 	};
 
-		getComments();
-	}, [limit]);
+	// 	getComments();
+	// }, [limit]);
+
+	useEffect(()=>{
+		axios.get('/sanctum/csrf-cookie').then(response => {
+			axios.get(`api/view-customer`).then(res=>{
+				console.log(res.data.customer);
+				if(res.status===200)
+				{
+					setItems(res.data.customer)
+				}
+				setLoading(false);
+			});
+		});
+	},[]);
+
+	if(loading)
+	{
+		return <h4>Loading Category...</h4>
+	}
+
 
 	  const handleDeleteClick = itemId => {
 			const newItems = [...items];

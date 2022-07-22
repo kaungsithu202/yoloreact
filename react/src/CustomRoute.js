@@ -42,7 +42,7 @@ const CustomRoute = () => {
 			
 				<Route path="/" element={<ProtectedRoutes />}>
 					<Route
-						path="admin/dashboard"
+						path="dashboard"		
 						element={
 							<Wrap>
 								<Dashboard />

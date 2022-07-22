@@ -1,4 +1,4 @@
-import axios from 'axios';
+    import axios from 'axios';
 import React, {useState} from 'react';
 import Navbar from '../../../pages/Frontend/Navbar';
 import swal from 'sweetalert';
@@ -25,7 +25,7 @@ function Register(){
     const registerSubmit = (e)=>{
         e.preventDefault();
 
-        const data = {
+        const data = {  
             name:registerInput.name,
             email:registerInput.email,
             password:registerInput.password,
