@@ -2,6 +2,7 @@ import React from "react";
 import "./scss/style.scss";
 import {Navigate, Routes, Route } from "react-router-dom";
 import Customers from "./pages/Customers";
+import CustomerDetail from "./components/DataDetails/CustomerDetail";
 import InvoicesTable from './components/Table/InvoiceTable'
 import Delete from "./components/Table/Delete";
 import Dashboard from "./pages/Dashboard";
@@ -95,6 +96,15 @@ const CustomRoute = () => {
 						element={
 							<Wrap>
 								<Customers />
+							</Wrap>
+						}
+					/>
+
+					<Route
+						path="customer-detail/:id"
+						element={
+							<Wrap>
+								<CustomerDetail />
 							</Wrap>
 						}
 					/>
