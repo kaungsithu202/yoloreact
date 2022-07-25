@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom';
 
 function Login(){
 
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const [loginInput, setLogin] = useState({
         email:'',
@@ -35,7 +35,7 @@ function Login(){
                 localStorage.setItem('auth_name', res.data.name);
                 swal("Success", res.data.message, "success");
 
-                history('../admin/dashboard');
+                navigate('../admin/dashboard');  
             }
             else if(res.data.status === 401)
             {

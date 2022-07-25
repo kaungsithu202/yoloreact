@@ -5,6 +5,7 @@ import {Row,Col } from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const BasicTable = (props) => {
 
@@ -14,7 +15,7 @@ const BasicTable = (props) => {
 	const [pageCount, setpageCount] = useState(0);
 
 	const [query, setQuery] = useState("");
-	console.log(items.filter(item => item.name.toLowerCase().includes('lg')));
+	// console.log(items.filter(item => item.name.toLowerCase().includes('lg')));
 
 	let limit = 20;
 	const navigate = useNavigate();
@@ -40,7 +41,6 @@ const BasicTable = (props) => {
 	useEffect(()=>{
 		axios.get('/sanctum/csrf-cookie').then(response => {
 			axios.get(`api/view-customer`).then(res=>{
-				console.log(res.data.customer);
 				if(res.status===200)
 				{
 					setItems(res.data.customer)
@@ -52,18 +52,28 @@ const BasicTable = (props) => {
 
 	if(loading)
 	{
-		return <h4>Loading Category...</h4>
+		return <h4>Loading Customers...</h4>
 	}
 
 
-	  const handleDeleteClick = itemId => {
-			const newItems = [...items];
+	  const handleDeleteClick = (e, id) => {
+			e.preventDefault();
 
-			const index = items.findIndex(item =>item.id === itemId);
+			const thisClicked = e.currentTarget;
+			thisClicked.innerText = "Deleting";
 
-			newItems.splice(index, 1);
-
-			setItems(newItems);
+			axios.delete(`/api/delete-customer/${id}`).then(res=>{
+				if(res.data.status === 200)
+				{
+					swal("Success", res.data.message, "success");
+					thisClicked.closest("tr").remove();
+				}
+				else if(res.data.status === 404)
+				{
+					swal("Error", res.data.message, "error");
+					thisClicked.innerText = "Delete";
+				}
+			})
 		};
 
 
@@ -88,9 +98,10 @@ const BasicTable = (props) => {
 		// scroll to the top
 		//window.scrollTo(0, 0)
 	};
+
+	
   return (
 		<>
-		<h1>BTable</h1>
 			<Row className="mt-3 mx-3 d-flex align-items-center">
 				<Col md={5}>
 					<div className="p-1 bg-white  shadow-sm mt-3">
@@ -122,13 +133,11 @@ const BasicTable = (props) => {
 			
 
 			<Table hover size="sm" className="mt-5 px-1">
-				
 				<thead>
 					<tr>
 					
 						<th>ID</th>
 						<th>Name</th>
-						<th>User Name</th>
 						<th>Email</th>
 						<th>Phone</th>
 						<th>Actions</th>
@@ -138,17 +147,19 @@ const BasicTable = (props) => {
 					{items
 						.filter(item => item.name.toLowerCase().includes(query))
 						.map(item => {
+							const handleEditClick = (item) =>{
+								navigate(`/customer-detail/${item.id}`);
+							}
 							return (
-								<tr key={item.id} className="p-3">
+								<tr  key={item.id} className="p-3">
 									<td>{item.id}</td>
-									<td>{item.name}</td>
-									<td>{item.username}</td>
+									<td onClick={() => handleEditClick(item)}>{item.name}</td>
 									<td>{item.email}</td>
 									<td>{item.phone}</td>
 									<td>
 										<Button
 											variant="outline-danger outline-none"
-											onClick={() => handleDeleteClick(item.id)}
+											onClick={(e) => handleDeleteClick(e,item.id)}
 										>
 											Delete
 										</Button>
