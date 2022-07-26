@@ -3,9 +3,28 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { Container, Navbar } from "react-bootstrap";
 import{ MdOutlinePersonOutline} from "react-icons/md";
+import swal from 'sweetalert';
 
 
 const NavbarCo = () => {
+
+    const navigate = useNavigate();
+
+	const logoutSubmit = (e) => {
+		e.preventDefault();
+
+		axios.post(`api/logout`).then(res=>{
+			if (res.data.status === 200) {
+				localStorage.removeItem('auth_token');
+				localStorage.removeItem('auth_name');
+				swal("Success", res.data.message, "success");
+				navigate('/');
+			} else {
+				
+			}
+		})
+	}
+
   return (
 
 		<Navbar expand="lg" variant="light" className="g-0">
@@ -18,7 +37,7 @@ const NavbarCo = () => {
 						Mr. Yee
 					</button>
 					<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<li><a type='button' className="dropdown-item nav-Link btn btn-danger btn-s text-danger"  href="#">Log Out</a></li>
+						<li><button type='button' onClick={logoutSubmit} className="dropdown-item nav-Link btn btn-danger btn-s text-danger"  href="#">Log Out</button></li>
 					</ul>
 					</div>
 

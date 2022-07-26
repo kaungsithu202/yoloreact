@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 
 function Navbar(){
 
-    const history = useNavigate();
+    const navigate = useNavigate();
 
 
     const logoutSubmit = (e) => {
@@ -17,7 +17,7 @@ function Navbar(){
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('auth_name');
                 swal("Success", res.data.message, "success");
-                history('/');
+                navigate('/');
             } else {
                 
             }

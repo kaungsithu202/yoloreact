@@ -1,6 +1,6 @@
 import React from 'react'
-import InvoiceTable from './Table/InvoiceTable';
-import BsTabs from './BsTabs';
+import InvoiceTable from '../components/Table/InvoiceTable';
+import BsTabs from '../components/BsTabs';
 
 const Invoices = () => {
   return (
