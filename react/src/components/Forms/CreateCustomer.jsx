@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
 import swal from 'sweetalert';
+import {Link} from 'react-router-dom';
 
 function CreateCustomer(){
 
@@ -60,9 +61,15 @@ function CreateCustomer(){
   return (
 		<div className="container  bg-light create-customer mt-4 pt-4 ">
 			<div className="row">
-				<div className="col d-flex align-items-center  ">
+				<div className="col d-flex justify-content-evenly align-items-center  ">
 					<i className="ri-user-add-line text-primary fs-2 me-4 ms-5"></i>
 					<span className=" fs-3 ">Create Customer</span>
+					<Link
+							to="/customers"
+							className="btn btn-success btn-custom ml-5 text-white  "
+						>
+							Back
+					</Link>
 				</div>
 			
 			</div>

@@ -52,21 +52,23 @@ const Sidebar = (props) => {
 						name="Invoices"
 						icon={<MdOutlineRequestQuote className="fs-3" />}
 					/> */} 
-				<NavLink to="/delivery" style={navLinkStyles}>
-					<SidebarItem 
-						name="Delivery"
-						icon={<MdOutlineDeliveryDining className="fs-3" />}
-					/>
-				</NavLink>
-					<SidebarItem
-						name="Re/Trans"
-						icon={<MdOutlineWrapText className="fs-3" />}
-					/>
+					<NavLink to="/delivery" style={navLinkStyles}>
+						<SidebarItem 
+							name="Delivery"
+							icon={<MdOutlineDeliveryDining className="fs-3" />}
+						/>
+					</NavLink>
+						<SidebarItem
+							name="Re/Trans"
+							icon={<MdOutlineWrapText className="fs-3" />}
+						/>
 
-					<SidebarItem
-						name="Products"
-						icon={<MdOutlineSell className="fs-3" />}
-					/>
+					<NavLink to="/products" style={navLinkStyles}>
+						<SidebarItem
+							name="Products"
+							icon={<MdOutlineSell className="fs-3" />}
+						/>
+					</NavLink>
 				</nav>
 			</Col>
 		</>

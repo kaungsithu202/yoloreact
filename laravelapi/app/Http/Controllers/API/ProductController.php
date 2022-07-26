@@ -2,30 +2,28 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Customer;
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CustomerController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
-        $customer = Customer::all();
+        $product = Product::all();
         return response()->json([
             'status'=>200,
-            'customer'=>$customer,
+            'product'=>$product,
         ]);
     }
 
-   
     public function store(Request $request)
     {
 
         $validator = Validator::make($request->all(),[
-            'name'=>'required|max:191',
-            'phone'=>'required|numeric|min:8',
-            'email'=>'email|max:191|unique:customers,email',
+            'item'=>'required|max:191|unique|products,item',
+            'price'=>'required|numeric|min:3',
         ]);
 
         if($validator->fails())
@@ -37,47 +35,42 @@ class CustomerController extends Controller
         }
         else
         {
-            $customer = new Customer;
-            $customer->name = $request->input('name');
-            $customer->phone = $request->input('phone');
-            $customer->email = $request->input('email');
-            $customer->city = $request->input('city');
-            $customer->township = $request->input('township');
-            $customer->address = $request->input('address');
-            $customer->save();
+            $product = new Product;
+            $product->item = $request->input('item');
+            $product->price = $request->input('price');
+            $product->save();
 
             return response()->json([
                 'status'=> 200,
-                'message'=>'Customer Added Successfully'
+                'message'=>'Product Added Successfully'
             ]);
         }
     }
 
     public function edit($id)
     {
-        $customer = Customer::find($id);
+        $product = Product::find($id);
 
-        if($customer)
+        if($product)
         {
             return response()->json([
                 'status' => 200,
-                'customer' => $customer
+                'product' => $product
             ]);
         }
         else{
             return response()->json([
                 'status'=>404,
-                'message' => "No Customer Id Found"
+                'message' => "No Product Id Found"
             ]);
         }
     }
-    
+
     public function update(Request $request,$id)
     {
         $validator = Validator::make($request->all(),[
-            'name'=>'required|max:191',
-            'phone'=>'required|numeric|min:8',
-            'email'=>'email|max:191|unique:customers,email,'. $id,
+            'item'=>'required|max:191|unique:products,item,' . $id,
+            'price'=>'required|numeric|min:3',
         ]);
 
         if($validator->fails())
@@ -89,28 +82,25 @@ class CustomerController extends Controller
         }
         else
         {
-            $customer = Customer::find($id);
+            $product = Product::find($id);
             
-            if($customer)
+            if($product)
             {
-                $customer->name = $request->input('name');
-                $customer->phone = $request->input('phone');
-                $customer->email = $request->input('email');
-                $customer->city = $request->input('city');
-                $customer->township = $request->input('township');
-                $customer->address = $request->input('address');
-                $customer->save();
+                $product->item = $request->input('item');
+                $product->price = $request->input('price');
+                $product->save();
 
                 return response()->json([
                     'status'=> 200,
-                    'message'=>'Customer Updated Successfully'
+                    'message'=>'Product Added Successfully'
                 ]);
+
             }
             else
             {
                 return response()->json([
                     'status' => 404,
-                    'message' => "No Customer Found"
+                    'message' => "No Product Found"
                 ]);
             }
         }
@@ -118,22 +108,23 @@ class CustomerController extends Controller
 
     public function destory($id)
     {
-        $customer = Customer::find($id);
-        if($customer)
+        $product = Product::find($id);
+        if($product)
         {
-            $customer->delete();
+            $product->delete();
             
             return response()->json([
                 'status' => 200,
-                'message' => 'Customer Deleted Successfully'
+                'message' => 'product Deleted Successfully'
             ]);
         }
         else
         {
             return response()->json([
                 'status' => 404,
-                'message' => 'No Customer Found'
+                'message' => 'No Product Found'
             ]);
         }
     }
+
 }

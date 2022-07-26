@@ -2,7 +2,7 @@ import React from "react";
 import "./scss/style.scss";
 import {Navigate, Routes, Route } from "react-router-dom";
 import Customers from "./pages/Customers";
-import CustomerDetail from "./components/DataDetails/CustomerDetail";
+import CustomerDetail from "./pages/DataDetails/CustomerDetail";
 import InvoicesTable from './components/Table/InvoiceTable'
 import Delete from "./components/Table/Delete";
 import Dashboard from "./pages/Dashboard";
@@ -11,8 +11,11 @@ import Login from "./components/Frontend/Auth/Login";
 import Register from "./components/Frontend/Auth/Register";
 import CreateInvoice from "./components/Forms/CreateInvoice";
 import CreateCustomer from "./components/Forms/CreateCustomer";
+import CreateProduct from "./components/Forms/CreateProduct";
+import EditProduct from "./components/Forms/EditProduct";
 import NoPageFound from "./components/NoPageFound";
-import Invoices from "./components/Invoices";
+import Invoices from "./pages/Invoices";
+import Products from "./pages/Products";
 import Wrap from "./components/Wrap";
 import CreateCargoInvoice from './components/Forms/CreateCargoInvoice'
 import { MdLocalHospital } from "react-icons/md";
@@ -27,10 +30,10 @@ const CustomRoute = () => {
 		<>
 			
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="home" element={<Home />} />
+				<Route path="/" element={token ? <Navigate to="/dashboard" replace /> :  <Login />} />
+				<Route path="home" element={token ? <Navigate to="/dashboard" replace /> :  <Login />} />
 
-				<Route
+				{/* <Route
 					path="create-customer"
 					element={
 						<Wrap>
@@ -68,7 +71,7 @@ const CustomRoute = () => {
 					<Route path="unpaid" element={<InvoicesTable />}></Route>
 					<Route path="delete" element={<Delete />}></Route>
 					<Route path="remain" element={<InvoicesTable />}></Route>
-					</Route>
+				</Route> */}
 
 				<Route path="/" element={<PublicRoutes />}>
 					<Route path="login" element={<Login />} />
@@ -132,16 +135,45 @@ const CustomRoute = () => {
 						<Route path="remain" element={<InvoicesTable/>}></Route>
 					</Route>
 
+					<Route
+						path="/delivery"
+						element={
+							<Wrap>
+								<Invoices />
+							</Wrap>
+							}
+					/>
+
+					<Route
+						path="/products"
+						element={
+							<Wrap>
+								<Products />
+							</Wrap>
+							}
+					/>
+
+					<Route
+						path="/create-product"
+						element={
+							<Wrap>
+								<CreateProduct />
+							</Wrap>
+						}
+					/>
+
+					<Route
+						path="/edit-product/:id"
+						element={
+							<Wrap>
+								<EditProduct />
+							</Wrap>
+						}
+					/>
+
 				</Route>
 
-				<Route
-					path="/delivery"
-					element={
-						<Wrap>
-							<Invoices />
-						</Wrap>
-					}
-				/>
+				
 				<Route path="*" element={<NoPageFound />} />
 			</Routes>
 		</>

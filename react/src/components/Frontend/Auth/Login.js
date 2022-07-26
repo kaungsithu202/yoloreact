@@ -35,7 +35,7 @@ function Login(){
                 localStorage.setItem('auth_name', res.data.name);
                 swal("Success", res.data.message, "success");
 
-                navigate('../admin/dashboard');  
+                navigate('../dashboard');  
             }
             else if(res.data.status === 401)
             {

@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
 import {Row,Col,Container,Dropdown,DropdownButton,Button} from 'react-bootstrap';
 import { UserData } from "../../store/Data";
-import BsTabsTwo from '../BsTabsTwo';
-import CardCo from '../CardCo';
+import BsTabsTwo from '../../components/BsTabsTwo';
+import CardCo from '../../components/CardCo';
 import {MdOutlineReceipt} from 'react-icons/md'
-import ChartCo from '../ChartCo';
+import ChartCo from '../../components/ChartCo';
 import { useEffect } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -192,7 +192,7 @@ const CustomerDetail = () => {
 									type="submit"
 									className="btn btn-primary px-5  btn-custom mb-5 text-white  "
 								>
-									Save
+									Update
 								</Button>
 							</div>
 						</div>
