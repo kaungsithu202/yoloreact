@@ -21,6 +21,7 @@ import CreateCargoInvoice from './components/Forms/CreateCargoInvoice'
 import { MdLocalHospital } from "react-icons/md";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
+import NewWrap from "./components/NewWrap";
 
 const token = localStorage.getItem('auth_token');
 const CustomRoute = () => {
@@ -89,43 +90,43 @@ const CustomRoute = () => {
 					<Route
 						path="dashboard"		
 						element={
-							<Wrap>
+							<NewWrap>
 								<Dashboard />
-							</Wrap>
+							</NewWrap>
 						}
 					/>
 					<Route
 						path="customers"
 						element={
-							<Wrap>
+							<NewWrap>
 								<Customers />
-							</Wrap>
+							</NewWrap>
 						}
 					/>
 
 					<Route
 						path="customer-detail/:id"
 						element={
-							<Wrap>
+							<NewWrap>
 								<CustomerDetail />
-							</Wrap>
+							</NewWrap>
 						}
 					/>
 
 					<Route
 						path="create-customer"
 						element={
-							<Wrap>
+							<NewWrap>
 								<CreateCustomer />
-							</Wrap>
+							</NewWrap>
 						}
 					/>
 					<Route
 						path="invoices"
 						element={
-							<Wrap>
+							<NewWrap>
 								<Invoices />
-							</Wrap>
+							</NewWrap>
 						}
 					>
 						<Route path="all" element={<InvoicesTable/>}></Route>
@@ -138,36 +139,36 @@ const CustomRoute = () => {
 					<Route
 						path="/delivery"
 						element={
-							<Wrap>
+							<NewWrap>
 								<Invoices />
-							</Wrap>
+							</NewWrap>
 							}
 					/>
 
 					<Route
 						path="/products"
 						element={
-							<Wrap>
+							<NewWrap>
 								<Products />
-							</Wrap>
+							</NewWrap>
 							}
 					/>
 
 					<Route
 						path="/create-product"
 						element={
-							<Wrap>
+							<NewWrap>
 								<CreateProduct />
-							</Wrap>
+							</NewWrap>
 						}
 					/>
 
 					<Route
 						path="/edit-product/:id"
 						element={
-							<Wrap>
+							<NewWrap>
 								<EditProduct />
-							</Wrap>
+							</NewWrap>
 						}
 					/>
 

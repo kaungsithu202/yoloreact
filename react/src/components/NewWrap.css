@@ -1,0 +1,59 @@
+
+.bg-yolo{
+    background-color:#e8ffe8 ;
+}
+
+.menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    color: black;
+}
+
+.nav-menu {
+    transition:all ease 850ms;
+    -webkit-transition:all ease 850ms;
+    -moz-transition:all ease 850ms;
+    -ms-transition:all ease 850ms;
+    -o-transition:all ease 850ms;
+}
+
+.nav-menu.active {
+    transition: 350ms;
+    -webkit-transition: 350ms;
+    -moz-transition: 350ms;
+    -ms-transition: 350ms;
+    -o-transition: 350ms;
+}
+
+.nav-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    height: 60px;
+ 
+    color: rgba(51, 50, 50, 0.178);
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+}
+
+.nav-text  a{
+    text-decoration: none;
+    color: rgba(26, 25, 25, 0.829);
+    font-size: 18px;
+    width: 95%;
+    height: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 19px 16px;
+    border-radius: 4px;
+   
+}
+
+.nav-text a:hover {
+    background-color: #a6fff2;
+}
