@@ -2,8 +2,8 @@ import React,{useState} from "react";
 
 
 
-import logo from "../images/yolo.png";
-import DropDown from "./DropDown";
+import logo from "../../images/yolo.png";
+import DropDown from "../DropDown";
 import { useNavigate, Link,NavLink} from "react-router-dom";
 import { Container, Navbar, Col,Row } from "react-bootstrap";
 
@@ -18,8 +18,8 @@ import {
 	MdOutlineSell,
 	MdOutlinePersonOutline,
 } from "react-icons/md";
-import SidebarItem from "./Sidebar/SidebarItem";
-import { SidebarData } from '../store/SidebarData';
+import SidebarItem from "../Sidebar/SidebarItem";
+import { SidebarData } from '../../store/SidebarData';
 
 
 const NewWrap = props => {
@@ -36,23 +36,32 @@ const NewWrap = props => {
 		<div className="mw-100">
 			{sidebar ? (
 				<div
-					
 					className={
 						sidebar
 							? "d-md-none d-lg-none nav-menu active "
 							: "d-md-none d-lg-none nav-menu "
 					}
 				>
-					<nav className="bg-yolo  pe-3 border-end ">
-						<div className=" text-start text-primary ms-4 ">
-							<h1 className="pt-3">YOLO</h1>
+					<nav>
+						<div className=" text-start text-primary ms-4 mb-5 d-flex align-items-center   ">
+							<h1>YOLO</h1>
+
+							<Link to="#" className='text-end'>
+								<FaBars
+									onClick={showSidebar}
+									className="d-md-none d-lg-none fs-3 mb-1 icon"
+								/>
+							</Link>
 						</div>
 
 						{SidebarData.map((item, index) => {
 							return (
 								<li key={index} className={item.cName}>
 									<Link to={item.path}>
+										<div className='fs-4 d-flex align-items-center me-3'>
+
 										{item.icon}
+											</div>
 										<span>{item.title}</span>
 									</Link>
 								</li>

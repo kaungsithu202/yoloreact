@@ -21,7 +21,7 @@ import CreateCargoInvoice from './components/Forms/CreateCargoInvoice'
 import { MdLocalHospital } from "react-icons/md";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
-import NewWrap from "./components/NewWrap";
+import NewWrap from "./components/NewWrap/NewWrap.jsx";
 
 const token = localStorage.getItem('auth_token');
 const CustomRoute = () => {
