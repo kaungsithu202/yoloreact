@@ -4,7 +4,7 @@ import {Navigate, Routes, Route } from "react-router-dom";
 import Customers from "./pages/Customers";
 import CustomerDetail from "./pages/DataDetails/CustomerDetail";
 import InvoicesTable from './components/Table/InvoiceTable'
-import Delete from "./components/Table/Delete";
+import Delete from "./components/Table/prevInvoiceTable";
 import Dashboard from "./pages/Dashboard";
 import Home from "./components/Frontend/Home";
 import Login from "./components/Frontend/Auth/Login";
@@ -23,6 +23,10 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import PublicRoutes from "./components/PublicRoutes";
 import NewWrap from "./components/NewWrap/NewWrap.jsx";
 
+import InvoicePaid from './components/Table/InvoicePaid';
+import InvoiceUnpaid from './components/Table/InvoiceUnpaid';
+import InvoiceDelete from './components/Table/InvoiceDelete';
+import InvoiceRemain from './components/Table/InvoiceRemain';
 const token = localStorage.getItem('auth_token');
 const CustomRoute = () => {
 	return (
@@ -34,58 +38,11 @@ const CustomRoute = () => {
 				<Route path="/" element={token ? <Navigate to="/dashboard" replace /> :  <Login />} />
 				<Route path="home" element={token ? <Navigate to="/dashboard" replace /> :  <Login />} />
 
-				{/* <Route
-					path="create-customer"
-					element={
-						<Wrap>
-							<CreateCustomer />
-						</Wrap>
-					}
-				/>
-
-				<Route path="create-cargo-invoice" 
-				element={
-					<Wrap>
-						<CreateCargoInvoice />
-					</Wrap>
-			}
-				></Route>
-
-				<Route path="create-invoice" 
-				element={
-					<Wrap>
-						<CreateInvoice />
-					</Wrap>
-			}
-				></Route>
-
-				<Route
-					path="invoices"
-					element={
-						<Wrap>
-							<Invoices />
-						</Wrap>
-					}
-				>
-					<Route path="all" element={<InvoicesTable />}></Route>
-					<Route path="paid" element={<InvoicesTable />}></Route>
-					<Route path="unpaid" element={<InvoicesTable />}></Route>
-					<Route path="delete" element={<Delete />}></Route>
-					<Route path="remain" element={<InvoicesTable />}></Route>
-				</Route> */}
 
 				<Route path="/" element={<PublicRoutes />}>
 					<Route path="login" element={<Login />} />
 					<Route path="register" element={<Register />} />
 				</Route>
-
-				
-					
-
-				{/* <Route path="/login" element={token ? <Navigate to="/" replace /> :  <Login />}  />
-				<Route path = "/register" element={token ? <Navigate to="/" replace /> :  <Register />} />
-					 */}
-			
 				<Route path="/" element={<ProtectedRoutes />}>
 					<Route
 						path="dashboard"		
@@ -130,12 +87,20 @@ const CustomRoute = () => {
 						}
 					>
 						<Route path="all" element={<InvoicesTable/>}></Route>
-						<Route path="paid" element={<InvoicesTable/>}></Route>
-						<Route path="unpaid" element={<InvoicesTable/>}></Route>
-						<Route path="delete" element={<InvoicesTable/>}></Route>
-						<Route path="remain" element={<InvoicesTable/>}></Route>
+						<Route path="paid" element={<InvoicePaid/>}></Route>
+						<Route path="unpaid" element={<InvoiceUnpaid/>}></Route>
+						<Route path="delete" element={<InvoiceDelete/>}></Route>
+						<Route path="remain" element={<InvoiceRemain/>}></Route>
 					</Route>
 
+					<Route
+						path="/create-invoice"
+						element={
+							<NewWrap>
+								<CreateInvoice/>
+							</NewWrap>
+							}
+					/>
 					<Route
 						path="/delivery"
 						element={

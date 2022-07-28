@@ -11,8 +11,7 @@ const BasicTable = props => {
 
 	const [pageCount, setpageCount] = useState(0);
 
-	const [query, setQuery] = useState("");
-	console.log(items.filter(item => item.name.toLowerCase().includes("lg")));
+
 
 	let limit = 20;
 	const navigate = useNavigate();
@@ -66,39 +65,6 @@ const BasicTable = props => {
 	};
 	return (
 		<>
-		<h1>InvoiceTa</h1>
-			<Row className="mt-3 mx-3 d-flex align-items-center">
-				
-				<Col md={5}>
-					<div className="p-1 bg-white  shadow-sm mt-3">
-						<div className="input-group">
-							<input
-								type="search"
-								placeholder="Search..."
-								aria-describedby="button-addon1"
-								className="form-control border-0 bg-light"
-								onChange={e => setQuery(e.target.value)}
-							/>
-
-							<div className="input-group-append">
-								<button
-									id="button-addon1"
-									type="submit"
-									className="btn btn-link text-dark"
-								>
-									<i className="fa fa-search"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</Col>
-				<Col className="text-end mt-3">
-					<Button onClick={() => navigate("/create-invoice")}>
-						Add Invoice
-					</Button>
-				</Col>
-			</Row>
-			<BsTabs />
 			<Table hover size="sm" className="mt-5 px-1">
 				<thead>
 					<tr>
@@ -111,9 +77,7 @@ const BasicTable = props => {
 					</tr>
 				</thead>
 				<tbody>
-					{items
-						.filter(item => item.name.toLowerCase().includes(query))
-						.map(item => {
+					{items.map(item => {
 							return (
 								<tr key={item.id} className="p-3">
 									<td>{item.id}</td>
