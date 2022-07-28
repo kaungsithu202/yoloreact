@@ -6,14 +6,15 @@ import { BrowserRouter } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
+import { StateContextProvider } from './context/StateContext';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			
+
+		<StateContextProvider>
+			<BrowserRouter>
 				<App />
-			
-		</BrowserRouter>
-	</React.StrictMode>,
-	document.getElementById("root"),
+			</BrowserRouter>
+		</StateContextProvider>
+	
+	,document.getElementById("root"),
 );

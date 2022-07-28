@@ -1,6 +1,9 @@
-import React from 'react'
-import {Row,Col} from 'react-bootstrap'
+import React, { useContext } from 'react'
+import {Col} from 'react-bootstrap';
+import StateContext from '../context/StateContext';
 const Search = () => {
+	const ctx =useContext(StateContext);
+	
   return (
 		<Col md={5}>
 			<div className="p-1 bg-white  shadow-sm mt-3">
@@ -10,8 +13,10 @@ const Search = () => {
 						placeholder="Search..."
 						aria-describedby="button-addon1"
 						className="form-control border-0 bg-light"
-						
+						onChange={ e => ctx.setQuery(e.target.value)}
 					/>
+				
+
 
 					<div className="input-group-append">
 						<button

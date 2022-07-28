@@ -35,7 +35,7 @@ axios.interceptors.request.use(function (config){
 			{/* <Wrap>
 				<UserDetail  />
 			</Wrap> */}
-
+			
 			<CustomRoute/>
 		</>
 	);

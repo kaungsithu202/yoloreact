@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import { Row, Col } from "react-bootstrap";
+
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
-import BsTabs from "../BsTabs";
+import StateContext from '../../context/StateContext';
+
 
 const BasicTable = props => {
+
 	const [items, setItems] = useState([]);
+	
 
 	const [pageCount, setpageCount] = useState(0);
-
-
+	const ctx=useContext(StateContext);
+	
+	
 
 	let limit = 20;
 	const navigate = useNavigate();
@@ -77,7 +81,9 @@ const BasicTable = props => {
 					</tr>
 				</thead>
 				<tbody>
-					{items.map(item => {
+					{items
+						.filter(item => item.name.toLowerCase().includes(ctx.query))
+						.map(item => {
 							return (
 								<tr key={item.id} className="p-3">
 									<td>{item.id}</td>
@@ -86,25 +92,15 @@ const BasicTable = props => {
 									<td>{item.email}</td>
 									<td>{item.phone}</td>
 									<td>
-										<Button
-											variant="outline-success outline-none"
-											
-										>
-											Paid
-										</Button>
+										<Button variant="outline-success outline-none">Paid</Button>
 									</td>
 									<td>
-										<Button
-											variant="outline-warning outline-none"	
-										>
+										<Button variant="outline-warning outline-none">
 											Unpaid
 										</Button>
 									</td>
 									<td>
-										<Button
-											variant="outline-primary outline-none"
-											
-										>
+										<Button variant="outline-primary outline-none">
 											Deliever
 										</Button>
 									</td>
