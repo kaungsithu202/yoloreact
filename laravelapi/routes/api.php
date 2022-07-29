@@ -18,6 +18,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/edit-customer/{id}', [CustomerController::class, 'edit']);
     Route::put('/update-customer/{id}', [CustomerController::class, 'update']);
     Route::delete('/delete-customer/{id}', [CustomerController::class, 'destory']);
+    Route::get('/all-customer', [CustomerController::class, 'allcustomer']);
 
     
     // Product
@@ -26,6 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/edit-product/{id}', [ProductController::class, 'edit']);
     Route::put('/update-product/{id}', [ProductController::class, 'update']);
     Route::delete('/delete-product/{id}', [ProductController::class, 'destory']);
+    Route::get('/all-product', [ProductController::class, 'allproduct']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
