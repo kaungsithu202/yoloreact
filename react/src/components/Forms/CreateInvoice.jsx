@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
+import Select from 'react-select';
+import axios from 'axios';
 import {
 	Row,
 	Col,
@@ -9,19 +11,73 @@ import {
 } from "react-bootstrap";
 
 const CreateInvoice = (props) => {
+
+	const [customerlist, setCustomerlist]=useState([]);
+	const [productlist, setProductlist]=useState([]);
+	useEffect(() => {
+		const requestCustomers = axios.get(`/api/all-customer`);
+		const requestProducts = axios.get(`/api/all-product`);
+		axios.all([requestCustomers, requestProducts]).then(axios.spread((...responses)=>{
+			const resCustomers = responses[0];
+			const resProducts = responses[1];
+
+			if(resCustomers.data.status === 200 && resProducts.data.status === 200)
+			{
+				setCustomerlist(resCustomers.data.customer);
+				setProductlist(resProducts.data.product);
+
+				
+			}
+			console.log(resCustomers, resProducts);
+		}))
+
+		// axios.get(`/api/all-customer`).then(res=>{
+		// 	if(res.data.status === 200)
+		// 	{
+		// 		setCustomerlist(res.data.customer);
+		// 		console.log(res.data.customer);
+		// 	}
+		// });
+
+		// axios.get(`/api/all-product`).then(res=>{
+		// 	if(res.data.status === 200)
+		// 	{
+		// 		setCustomerlist(res.data.product);
+		// 		console.log(res.data);
+		// 	}
+		// });
+	}, []);
+
+	const customerOptions = customerlist.map((item)=>{
+		return{
+			"value":item.id,
+			"label":item.name,
+		}
+	});
+
+	const productOptions = productlist.map((item)=>{
+		return{
+			"value":item.id,
+			"label":item.item,
+		}
+	});
+
   return (
 		<>
 			<Container>
 				<h3 className="text-center my-5 pt-4">{props.title}</h3>
 				<Row className="mt-4 ms-5">
-					<Col md={6}>
-						<input
-							type="text"
-							name="customer"
-							className="form-control"
-							placeholder="Customer Name * "
+					<Col
+							md={6}
+							className="d-flex align-items-center justify-content-between"
+						>
+
+						<Select
+							name='customer_id'
+							options={customerOptions}
 						/>
 					</Col>
+
 				</Row>
 				<Row className="mt-4 ms-5 ">
 					<Col
@@ -65,7 +121,7 @@ const CreateInvoice = (props) => {
 							<thead>
 								<tr>
 									<th scope="col">No</th>
-									<th scope="col" colspan="2">
+									<th scope="col" colSpan="2">
 										Item
 									</th>
 									<th scope="col">Qty</th>
@@ -76,28 +132,47 @@ const CreateInvoice = (props) => {
 							<tbody>
 								<tr>
 									<td>1</td>
-									<td colspan="2">Product 1</td>
+									<td colSpan="2">
+										<Select
+										
+										options={productOptions}
+										/>
+									</td>
+									<td>
+										<input
+											type="number"
+											className="form-control"
+											defaultValue={1}
+											name='price'
+										/>
+									</td>
+									<td>
+										<input
+											type="number"
+											className="form-control"
+											defaultValue={0}
+											name='price'
+										/>
+									</td>
+									<td>200000</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td colSpan="2">Product 1</td>
 									<td>3</td>
 									<td>10,0000</td>
 									<td>200000</td>
 								</tr>
 								<tr>
 									<td>1</td>
-									<td colspan="2">Product 1</td>
+									<td colSpan="2">Product 1</td>
 									<td>3</td>
 									<td>10,0000</td>
 									<td>200000</td>
 								</tr>
 								<tr>
 									<td>1</td>
-									<td colspan="2">Product 1</td>
-									<td>3</td>
-									<td>10,0000</td>
-									<td>200000</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td colspan="2">Product 1</td>
+									<td colSpan="2">Product 1</td>
 									<td>3</td>
 									<td>10,0000</td>
 									<td>200000</td>

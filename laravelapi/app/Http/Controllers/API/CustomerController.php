@@ -18,6 +18,15 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function allcustomer()
+    {
+        $customer = Customer::get();
+        return response()->json([
+            'status'=>200,
+            'customer'=>$customer,
+        ]);
+    }
+
    
     public function store(Request $request)
     {

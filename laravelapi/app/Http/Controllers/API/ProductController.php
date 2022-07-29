@@ -18,6 +18,15 @@ class ProductController extends Controller
         ]);
     }
 
+    public function allproduct(Type $var = null)
+    {
+        $product = Product::get();
+        return response()->json([
+            'status'=>200,
+            'product'=>$product,
+        ]);
+    }
+
     public function store(Request $request)
     {
 
