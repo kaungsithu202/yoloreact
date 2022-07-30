@@ -125,7 +125,7 @@ const BasicTable = props => {
 				marginPagesDisplayed={2}
 				pageRangeDisplayed={3}
 				onPageChange={handlePageClick}
-				containerClassName={"pagination justify-content-end"}
+				containerClassName={"pagination justify-content-end me-4"}
 				pageClassName={"page-item"}
 				pageLinkClassName={"page-link"}
 				previousClassName={"page-item"}

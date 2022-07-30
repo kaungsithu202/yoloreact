@@ -46,7 +46,7 @@ const NewWrap = props => {
 						<div className=" text-start text-primary ms-4 mb-5 d-flex align-items-center   ">
 							<h1>YOLO</h1>
 
-							<Link to="#" className='text-end'>
+							<Link to="#" className="text-end">
 								<FaBars
 									onClick={showSidebar}
 									className="d-md-none d-lg-none fs-3 mb-1 icon"
@@ -58,10 +58,9 @@ const NewWrap = props => {
 							return (
 								<li key={index} className={item.cName}>
 									<Link to={item.path}>
-										<div className='fs-4 d-flex align-items-center me-3'>
-
-										{item.icon}
-											</div>
+										<div className="fs-4 d-flex align-items-center me-3">
+											{item.icon}
+										</div>
 										<span>{item.title}</span>
 									</Link>
 								</li>
@@ -105,15 +104,18 @@ const NewWrap = props => {
 								icon={<MdOutlineDeliveryDining className="fs-3" />}
 							/>
 						</NavLink>
-						<SidebarItem
-							name="Re/Trans"
-							icon={<MdOutlineWrapText className="fs-3" />}
-						/>
-
-						<SidebarItem
-							name="Products"
-							icon={<MdOutlineSell className="fs-3" />}
-						/>
+						<NavLink to="/retrans" style={navLinkStyles}>
+							<SidebarItem
+								name="Re/Trans"
+								icon={<MdOutlineWrapText className="fs-3" />}
+							/>
+						</NavLink>
+						<NavLink to="/products" style={navLinkStyles}>
+							<SidebarItem
+								name="Products"
+								icon={<MdOutlineSell className="fs-3" />}
+							/>
+						</NavLink>
 					</nav>
 				</Col>
 

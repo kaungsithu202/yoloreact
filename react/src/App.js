@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import CreateCargoInvoice from './components/Forms/CreateCargoInvoice';
 import CreateInvoice from './components/Forms/CreateInvoice';	
+import CreateInvoiceTest from './components/Forms/CreateInvoiceTest';
 
 
 import CreateDraftInvoice from './components/Forms/CreateDraftInvoice';
@@ -37,6 +38,7 @@ axios.interceptors.request.use(function (config){
 			</Wrap> */}
 			
 			<CustomRoute/>
+			{/* <CreateInvoiceTest/> */}
 		</>
 	);
     

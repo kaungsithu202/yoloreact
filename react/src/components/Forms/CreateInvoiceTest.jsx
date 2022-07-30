@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 import axios from "axios";
 import {
@@ -11,85 +12,95 @@ import {
 } from "react-bootstrap";
 
 const CreateInvoice = props => {
-	const [customerlist, setCustomerlist] = useState([]);
-	const [productlist, setProductlist] = useState([]);
-	const [selectedValue,setSelectedValue] = useState('');
-	const [qtyValue,setQtyValue]=useState('');
-	console.log(productlist);
+	const [data, setData] = useState("");
+    const [rateValue,setRateValue] = useState('');
+
+	const invoiceNoRef = useRef();
+	const customerRef = useRef();
+	const dateRef = useRef();
+	const itemRef = useRef();
+	const qtyRef = useRef();
+	const rateRef = useRef();
+	const priceRef = useRef();
+
+
+    const customerList = [
+			{ id: 1, name: "Yolo" },
+			{ id: 2, name: "Kaung Si Thu" },
+		];
+		const productList = [
+			{ id: 1, name: "books", rate: 1000 },
+			{ id: 2, name: "pen", rate: 1000 },
+		];
+
+    const selectHandler =(e)=>{
+
+        if(e.target.value ===  productList[0].name  ){
+           setRateValue(productList[0].rate);
+        }
+        if(e.target.value ===productList[1].name ){
+           setRateValue(productList[1].rate);
+        }
+        console.log(productList[0].rate);
+        console.log(productList[0].name);
+        console.log(e.target.value)
+        
+    }
+    
 	
 
-	useEffect(() => {
-		const requestCustomers = axios.get(`/api/all-customer`);
-		const requestProducts = axios.get(`/api/all-product`);
-		axios.all([requestCustomers, requestProducts]).then(
-			axios.spread((...responses) => {
-				const resCustomers = responses[0];
-				const resProducts = responses[1];
+	// const [customerlist, setCustomerlist] = useState([]);
 
-				if (
-					resCustomers.data.status === 200 &&
-					resProducts.data.status === 200
-				) {
-					setCustomerlist(resCustomers.data.customer);
-					setProductlist(resProducts.data.product);
-				}
-				console.log(resCustomers);
-				console.log(resProducts);
-			}),
-		);
+	// const [productlist, setProductlist] = useState([]);
 
-		// axios.get(`/api/all-customer`).then(res=>{
-		// 	if(res.data.status === 200)
-		// 	{
-		// 		setCustomerlist(res.data.customer);
-		// 		console.log(res.data.customer);
-		// 	}
-		// });
 
-		// axios.get(`/api/all-product`).then(res=>{
-		// 	if(res.data.status === 200)
-		// 	{
-		// 		setCustomerlist(res.data.product);
-		// 		console.log(res.data);
-		// 	}
-		// });
-	}, []);
 
-	const customerOptions = customerlist.map(item => {
+
+
+
+	const customerOptions = customerList.map(item => {
 		return {
 			value: item.id,
 			label: item.name,
 		};
 	});
 
-
-	const productOptions = productlist.map(item => {
+	const productOptions = productList.map(item => {
 		return {
 			value: item.id,
-			label: item.item,
-			price:item.price,
+			label: item.name,
+        
 		};
 	});
-	const handleChange =(selectedValue)=>{
-		setSelectedValue(selectedValue);
-	}
-	const handleQtyChange=(e)=>{
-		setQtyValue(e.target.value)
-	}
-	console.log(selectedValue);
-	
-
+	const submitHandler = e => {
+		e.preventDefault();
+		const dataRe = {
+			value: customerRef.current.value,
+			number: invoiceNoRef.current.value,
+			date: dateRef.current.value,
+			item: itemRef.current.value,
+			qty: qtyRef.current.value,
+			rate: rateRef.current.value,
+			price: priceRef.current.value,
+		};
+		setData(dataRe);
+		console.log(dataRe);
+	};
 	return (
 		<>
 			<Container>
 				<h3 className="text-center my-5 pt-4">{props.title}</h3>
-				<form>
+				<form onSubmit={submitHandler}>
 					<Row className="mt-4 ms-5">
 						<Col
 							md={6}
 							className="d-flex align-items-center justify-content-between"
 						>
-							<Select name="customer_id" options={customerOptions} />
+							<Select
+								name="customer_id"
+								options={customerOptions}
+								ref={customerRef}
+							/>
 						</Col>
 					</Row>
 					<Row className="mt-4 ms-5 ">
@@ -106,6 +117,7 @@ const CreateInvoice = props => {
 								className="form-control "
 								name="invoices"
 								placeholder="98231 "
+								ref={invoiceNoRef}
 							/>
 						</Col>
 						<Col md={6}></Col>
@@ -125,6 +137,7 @@ const CreateInvoice = props => {
 								id="exampleInputEmail1"
 								placeholder="29/9/2022 "
 								aria-describedby="emailHelp"
+								ref={dateRef}
 							/>
 						</Col>
 					</Row>
@@ -147,34 +160,39 @@ const CreateInvoice = props => {
 										<td>1</td>
 										<td colSpan="2">
 											<Select
+												name="customer_id"
 												options={productOptions}
-												value={selectedValue}
-												onChange={handleChange}
+												ref={itemRef}
+												
 											/>
 										</td>
+
 										<td>
 											<input
 												type="number"
 												className="form-control"
-												value={qtyValue}
-												onChange={handleQtyChange}
+												defaultValue={1}
 												name="qty"
+												ref={qtyRef}
 											/>
 										</td>
 										<td>
 											<input
 												type="number"
 												className="form-control"
-												value={selectedValue.price }
+												defaultValue={rateValue}
 												name="rate"
+
+                                            
 											/>
 										</td>
 										<td>
 											<input
 												type="number"
 												className="form-control"
-												value={selectedValue.price * qtyValue}
+												defaultValue={0}
 												name="price"
+												ref={priceRef}
 											/>
 										</td>
 									</tr>
@@ -273,7 +291,7 @@ const CreateInvoice = props => {
 							</Button>
 						</Col>
 						<Col md={3}>
-							<Button variant="outline-primary" className="px-5 	">
+							<Button type="submit" variant="outline-primary" className="px-5 	">
 								Save
 							</Button>
 						</Col>

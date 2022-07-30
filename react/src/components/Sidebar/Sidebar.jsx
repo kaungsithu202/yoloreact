@@ -47,21 +47,23 @@ const Sidebar = (props) => {
 					</NavLink>
 
 					<DropDown />
-				
+
 					{/* <SidebarItem
 						name="Invoices"
 						icon={<MdOutlineRequestQuote className="fs-3" />}
-					/> */} 
+					/> */}
 					<NavLink to="/delivery" style={navLinkStyles}>
-						<SidebarItem 
+						<SidebarItem
 							name="Delivery"
 							icon={<MdOutlineDeliveryDining className="fs-3" />}
 						/>
 					</NavLink>
+					<NavLink to="/retrans" style={navLinkStyles}>
 						<SidebarItem
 							name="Re/Trans"
 							icon={<MdOutlineWrapText className="fs-3" />}
 						/>
+					</NavLink>
 
 					<NavLink to="/products" style={navLinkStyles}>
 						<SidebarItem

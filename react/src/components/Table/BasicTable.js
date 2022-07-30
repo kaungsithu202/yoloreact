@@ -127,15 +127,15 @@ const BasicTable = (props) => {
 					</div>
 				</Col>
 				<Col className="text-end mt-3">
-					<Button onClick={()=>navigate('/create-customer')}>Add Customer</Button>
+					<Button onClick={() => navigate("/create-customer")}>
+						Add Customer
+					</Button>
 				</Col>
 			</Row>
-			
 
 			<Table hover size="sm" className="mt-5 px-1">
 				<thead>
 					<tr>
-					
 						<th>ID</th>
 						<th>Name</th>
 						<th>Email</th>
@@ -147,11 +147,11 @@ const BasicTable = (props) => {
 					{items
 						.filter(item => item.name.toLowerCase().includes(query))
 						.map(item => {
-							const handleEditClick = (item) =>{
+							const handleEditClick = item => {
 								navigate(`/customer-detail/${item.id}`);
-							}
+							};
 							return (
-								<tr  key={item.id} className="p-3">
+								<tr key={item.id} className="p-3">
 									<td>{item.id}</td>
 									<td onClick={() => handleEditClick(item)}>{item.name}</td>
 									<td>{item.email}</td>
@@ -159,7 +159,7 @@ const BasicTable = (props) => {
 									<td>
 										<Button
 											variant="outline-danger outline-none"
-											onClick={(e) => handleDeleteClick(e,item.id)}
+											onClick={e => handleDeleteClick(e, item.id)}
 										>
 											Delete
 										</Button>
@@ -177,7 +177,7 @@ const BasicTable = (props) => {
 				marginPagesDisplayed={2}
 				pageRangeDisplayed={3}
 				onPageChange={handlePageClick}
-				containerClassName={"pagination justify-content-end"}
+				containerClassName={"pagination justify-content-end me-4"}
 				pageClassName={"page-item"}
 				pageLinkClassName={"page-link"}
 				previousClassName={"page-item"}
