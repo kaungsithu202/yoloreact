@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
 
         $validator = Validator::make($request->all(),[
-            'item'=>'required|max:191|unique|products,item',
+            'item'=>'required|max:191|unique:products,item',
             'price'=>'required|numeric|min:3',
         ]);
 
