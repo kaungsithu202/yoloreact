@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import './CreateInvoice.css'
 import {
 	Row,
 	Col,
@@ -14,8 +16,11 @@ const CreateInvoice = props => {
 	const [customerlist, setCustomerlist] = useState([]);
 	const [productlist, setProductlist] = useState([]);
 	const [selectedValue,setSelectedValue] = useState('');
-	const [qtyValue,setQtyValue]=useState('');
-	console.log(productlist);
+	const [qtyValue,setQtyValue]=useState(''); 
+	const [rate,setRate]=useState('');
+	const [amount,setAmount]=useState('');
+	const [itemsList,setItemsList] = useState([]); //all data
+	console.log(itemsList);
 	
 
 	useEffect(() => {
@@ -54,6 +59,9 @@ const CreateInvoice = props => {
 		// 	}
 		// });
 	}, []);
+	useEffect( () =>{
+		setAmount(selectedValue.price * qtyValue);
+	},[selectedValue,qtyValue])
 
 	const customerOptions = customerlist.map(item => {
 		return {
@@ -70,20 +78,46 @@ const CreateInvoice = props => {
 			price:item.price,
 		};
 	});
+
+	// form submit
+	const submitHandler=(e)=>{
+		e.preventDefault();
+		// data
+		const newItems = productlist.map(item => {
+			return {
+				...item,
+				id:uuidv4(),
+				name:item.item,
+				qty:qtyValue,
+				amount:amount
+			}
+		});
+		setItemsList(newItems);
+		
+	
+		
+
+	}
 	const handleChange =(selectedValue)=>{
-		setSelectedValue(selectedValue);
+		setSelectedValue(selectedValue);  //selectedValue for items {books or pen}
+		setRate(selectedValue.price);
+		setAmount(selectedValue.price);
 	}
 	const handleQtyChange=(e)=>{
 		setQtyValue(e.target.value)
+		
 	}
+	// const amount = selectedValue.price * qtyValue;
+
 	console.log(selectedValue);
+	console.log(qtyValue);
 	
 
 	return (
 		<>
 			<Container>
 				<h3 className="text-center my-5 pt-4">{props.title}</h3>
-				<form>
+				<form onSubmit={submitHandler}>
 					<Row className="mt-4 ms-5">
 						<Col
 							md={6}
@@ -110,7 +144,7 @@ const CreateInvoice = props => {
 						</Col>
 						<Col md={6}></Col>
 					</Row>
-					<Row className="ms-5 mt-4">
+					<Row className="ms-5 mt-4 d-flex align-items-center">
 						<Col
 							md={6}
 							className=" d-flex align-items-center justify-content-between"
@@ -126,6 +160,13 @@ const CreateInvoice = props => {
 								placeholder="29/9/2022 "
 								aria-describedby="emailHelp"
 							/>
+						</Col>
+					</Row>
+					<Row>
+						<Col md={10} className="text-end mt-4">
+							<Button type="submit" className="px-1">
+								Add Items
+							</Button>
 						</Col>
 					</Row>
 					<Row className="mt-4 ms-5">
@@ -165,7 +206,7 @@ const CreateInvoice = props => {
 											<input
 												type="number"
 												className="form-control"
-												value={selectedValue.price }
+												value={rate}
 												name="rate"
 											/>
 										</td>
@@ -173,36 +214,28 @@ const CreateInvoice = props => {
 											<input
 												type="number"
 												className="form-control"
-												value={selectedValue.price * qtyValue}
+												value={amount}
 												name="price"
 											/>
 										</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td colSpan="2">Product 1</td>
-										<td>3</td>
-										<td>10,0000</td>
-										<td>200000</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td colSpan="2">Product 1</td>
-										<td>3</td>
-										<td>10,0000</td>
-										<td>200000</td>
-									</tr>
-									<tr>
-										<td>1</td>
-										<td colSpan="2">Product 1</td>
-										<td>3</td>
-										<td>10,0000</td>
-										<td>200000</td>
 									</tr>
 								</tbody>
 							</table>
 						</Col>
 					</Row>
+					{/* Result */}
+					{/* i want to render only 2 of 1 from here  */}
+					{
+					itemsList.map( list => (
+						<React.Fragment key={list.id}>
+						<h1>{list.name}</h1>
+						<h1>{list.qty}</h1>
+						<h1>{list.amount}</h1>
+						<h1>{list.rate}</h1>
+						
+						</React.Fragment>
+					))
+					}
 					<Row className="d-flex align-items-center justify-content-center mt-1 gx-5 m-auto">
 						<Col
 							md={5}

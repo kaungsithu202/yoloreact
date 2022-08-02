@@ -1,16 +1,11 @@
 import React from 'react'
-import "./scss/style.scss";
+
 import CustomRoute from './CustomRoute';
 import './App.css'
-import Wrap from './components/Wrap';
 import axios from 'axios';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import CreateCargoInvoice from './components/Forms/CreateCargoInvoice';
-import CreateInvoice from './components/Forms/CreateInvoice';	
-import CreateInvoiceTest from './components/Forms/CreateInvoiceTest';
 
+import Navbar from './pages/Frontend/Navbar';
 
-import CreateDraftInvoice from './components/Forms/CreateDraftInvoice';
 
 
 
@@ -30,15 +25,10 @@ axios.interceptors.request.use(function (config){
 
   return (
 		<>
-			 {/* <Wrap>
-				<CreateInvoice  title='Main Invoices'/>
-			</Wrap>  */}	
-			{/* <Wrap>
-				<UserDetail  />
-			</Wrap> */}
-			
+		
+			{/* <Navbar/> */}
 			<CustomRoute/>
-			{/* <CreateInvoiceTest/> */}
+		
 		</>
 	);
     

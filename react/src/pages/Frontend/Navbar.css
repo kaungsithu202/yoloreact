@@ -1,0 +1,13 @@
+
+
+.nav-hover:hover{
+   
+    background-color: #49beb7;
+   
+}
+li a{
+    text-decoration: none;
+}
+.btn-light{
+    background-color:#49beb7 !important;
+}
